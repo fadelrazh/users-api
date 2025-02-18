@@ -1,0 +1,156 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "User API",
+      "version": "1.0.0",
+      "description": "API untuk mengelola pengguna"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000/api",
+        "description": "Local Server"
+      }
+    ],
+    "paths": {
+      "/users": {
+        "get": {
+          "summary": "Dapatkan semua pengguna",
+          "responses": {
+            "200": {
+              "description": "Daftar pengguna berhasil didapatkan",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Tambah pengguna baru",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Pengguna berhasil ditambahkan"
+            }
+          }
+        }
+      },
+      "/users/{id}": {
+        "get": {
+          "summary": "Dapatkan pengguna berdasarkan ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Pengguna berhasil ditemukan",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Pengguna tidak ditemukan"
+            }
+          }
+        },
+        "put": {
+          "summary": "Perbarui pengguna",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Pengguna berhasil diperbarui"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Hapus pengguna",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Pengguna berhasil dihapus"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "User": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "example": "123e4567-e89b-12d3-a456-426614174000"
+            },
+            "name": {
+              "type": "string",
+              "example": "Fadel Razsiah"
+            },
+            "email": {
+              "type": "string",
+              "example": "fadelrzsh@gmail.com"
+            },
+            "age": {
+              "type": "integer",
+              "example": 24
+            }
+          }
+        }
+      }
+    }
+  }
+  
