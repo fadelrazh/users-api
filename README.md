@@ -50,6 +50,6 @@ Make sure you have the following installed on your system:
 You can access the Swagger API documentation at:
 http://localhost:3000/api-docs
 
-#### Running Tests
+### Running Tests
 
 npm test
